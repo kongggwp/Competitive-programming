@@ -4,29 +4,27 @@ using namespace std;
 
 // } Driver Code Ends
 class Solution {
-  public:
-    vector<int> bfsOfGraph(int V, vector<int> adj[]) {
-        int visit[V]={0};
-        visit[0] = 1;
-        queue<int>q;
-        q.push(0);
-        vector<int>bfs;
-        while(!q.empty())
+  private:
+    void dfs(int node , vector<int>adj[] , int vis[] , vector<int> &ls)
+    {
+        vis[node] = 1;
+        ls.push_back(node);
+        for(auto it : adj[node])
         {
-            int node = q.front();
-            q.pop();
-            bfs.push_back(node);
-            
-            for(auto it : adj[node])
+            if(!vis[it])
             {
-                if(!visit[it])
-                {
-                    visit[it] = 1;
-                    q.push(it);
-                }
+                dfs(it , adj , vis , ls);
             }
         }
-        return bfs;
+    }
+  public:
+    // Function to return a list containing the DFS traversal of the graph.
+    vector<int> dfsOfGraph(int V, vector<int> adj[]) {
+        int vis[V]={0};
+        int start = 0;
+        vector<int>ls;
+        dfs(start , adj , vis , ls);
+        return ls;
     }
 };
 
@@ -36,9 +34,7 @@ int main() {
     cin >> tc;
     while (tc--) {
         int V, E;
-        cin >> V >>
-
-            E;
+        cin >> V >> E;
 
         vector<int> adj[V];
 
@@ -46,12 +42,12 @@ int main() {
             int u, v;
             cin >> u >> v;
             adj[u].push_back(v);
-            // 		adj[v].push_back(u);
+            adj[v].push_back(u);
         }
         // string s1;
         // cin>>s1;
         Solution obj;
-        vector<int> ans = obj.bfsOfGraph(V, adj);
+        vector<int> ans = obj.dfsOfGraph(V, adj);
         for (int i = 0; i < ans.size(); i++) {
             cout << ans[i] << " ";
         }
@@ -59,4 +55,4 @@ int main() {
     }
     return 0;
 }
-// } Driver Code Ends
+// 

@@ -42,20 +42,12 @@ int32_t main()
                         dist[nn][1] = dist[node][0] + cost/2;
                         pq.push({dist[nn][1] , {nn , 1}});
                     }
-                    if(dist[node][0] + cost < dist[nn][0])
-                    {
-                        dist[nn][0] = dist[node][0] + cost;
-                        pq.push({dist[nn][0] , {nn , 0}});
-                    }
                 }
-                else
-                {
-                    if(dist[node][1] + cost < dist[nn][1])
+                    if(dist[node][used] + cost < dist[nn][used])
                     {
-                        dist[nn][1] = dist[node][1] + cost;
-                        pq.push({dist[nn][1] , {nn , 1}});
+                        dist[nn][used] = dist[node][used] + cost;
+                        pq.push({dist[nn][used] , {nn , used}});
                     }
-                }
             }
         }
         cout << min(dist[N][1] , dist[N][0]);

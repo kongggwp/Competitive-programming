@@ -4,7 +4,5 @@ Lang : c++/c
 <p>Username : Kongggwp</p>
 <h3>CodeChef</h3>
 <p>Username : kongggwp</p>
-<h3>Grader Mwit</h3>
-<p>Username : Kongggwpman</p>
 <h3>Code Studio</h3>
 <p>Username : Kongggwp</p>
